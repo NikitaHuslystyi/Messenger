@@ -13,20 +13,16 @@ def render_chat():
     
     if flask_login.current_user.is_authenticated:
         
+        chats = Chat.query.all()
+        
         data = {
-            "can_logout": True
+            "can_logout": True,
+            "chats": chats
         }
         
         return flask.render_template("chat.html", **data)
     
-    # Егор. Получить все записи чатов (Chat)
-    # И передать их на шаблон
-    chats = Chat.query.all()
-    chats_data = {
-        "chats": chats
-    }
-    
-    return flask.render_template("chat.html", **chats_data)
+    return flask.render_template("chat.html")
 
 def render_reg():
     
@@ -160,13 +156,15 @@ def render_opened_chat(chat_id):
     
     chat = Chat.query.get(chat_id)
     
+    all_chats = Chat.query.all()
     # Собрать словарь с чатом
     if chat is None:
         return flask.redirect("/")
     
     context = {
         "id": chat.id,
-        "title": chat.title
+        "title": chat.title,
+        "chats": all_chats
     }
     # Передать словарь на шаблон
     return flask.render_template("opened_chat.html", **context)
