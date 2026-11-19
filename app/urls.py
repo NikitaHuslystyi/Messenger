@@ -1,43 +1,17 @@
+import flask
 from .settings import main_app
 from chat_app.views import render_reg
-from chat_app.views import render_opened_chat
-# Импортировать функции отображения
-from chat_app.views import render_chat
-from chat_app.views import render_auth, render_logout
 from chat_app.app import chat_app_blueprint
-
 
 main_app.add_url_rule(
     rule = "/",
-    view_func = render_chat
-
+    view_func = lambda: flask.redirect("/reg"),
+    endpoint = "index"
 )
 
 main_app.add_url_rule(
     rule = "/reg",
     view_func = render_reg,
-    methods = ["GET", "POST"]
-)
-
-# Егор Столяров
-# Указать адрес страніци авторізаціі
-main_app.add_url_rule(
-    rule = "/auth",
-    view_func = render_auth,
-    methods = ["GET", "POST"]
-)
-
-main_app.add_url_rule(
-    rule = "/logout",
-    view_func = render_logout,
-    methods = ["GET", "POST"]
-)
-
-# Полина. Собрать динамический адрес под страницу чата
-# Название динамической части «chat_id»
-main_app.add_url_rule(
-    rule= "/chat/<int:chat_id>",
-    view_func= render_opened_chat,
     methods = ["GET", "POST"]
 )
 

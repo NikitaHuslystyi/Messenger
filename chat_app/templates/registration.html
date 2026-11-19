@@ -1,17 +1,51 @@
 {% extends 'base.html' %}
 
-{% block links %} 
-    <link rel="stylesheet" href= "{{ url_for('chat.static', filename='css/style.css')}}">
+{% block title %}Створити обліковий запис — World IT{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('chat.static', filename='css/registration.css') }}">
+{% endblock %}
+
+{% block header %}
+    <header class="header">
+        <a>
+            <img class="logo" src="{{ url_for('chat.static', filename='img/logo.png') }}">
+        </a>
+        <a class="login-button" href="/auth">Увійти</a>
+    </header>
 {% endblock %}
 
 {% block content %}
-    <form action="" method="post">
-        <input type="email" placeholder="Ваша пошта" name="email" value = "{{ email }}">
-        <input type="text" placeholder="Ваш пароль" name="password" value = "{{ password }}">
-        <input type="text" placeholder="Підтвердіть ваш пароль" name="confirm_password" value = "{{ confirm_password }}">
-        <button type = "submit">Зареєстроватись</button>
+    <h1 class="title">Створити обліковий запис</h1>
 
-        <p>{{ error }}</p>
-        
+    <form class="form" method="post">
+        <label for="email">Введіть вашу електронну пошту нижче, щоб створити обліковий запис</label>
+        <input id="email" type="email" name="email" placeholder="name@example.com" value="{{ email or '' }}">
+
+        <label for="password">Задайте ваш пароль нижче, щоб створити обліковий запис</label>
+        <input id="password" type="password" name="password" placeholder="••••••••••••••••">
+
+        <label for="confirm_password">Перевірка паролю</label>
+        <input id="confirm_password" type="password" name="confirm_password" placeholder="••••••••••••••••">
+
+        <button type="submit">Надіслати код підтвердження</button>
+
+        {% if error %}
+            <p class="message error">{{ error }}</p>
+        {% endif %}
+        {% if success %}
+            <p class="message success">{{ success }}</p>
+        {% endif %}
     </form>
+
+    {# У новому макеті цього тексту немає. Щоб повернути - зніміть коментар і додайте стилі .terms:
+    <p class="terms">
+        Натискаючи «Продовжити», ви погоджуєтеся з нашими
+        <span>Умовами обслуговування</span>
+        і
+        <span>Політикою конфіденційності</span>.
+    </p>
+    #}
+
+    <img class="illustration" src="{{ url_for('chat.static', filename='img/illustration.png') }}">
 {% endblock %}

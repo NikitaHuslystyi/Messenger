@@ -3,20 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ochen krutaya stranica</title>
+    <title>{% block title %}World_IT{% endblock %}</title>
     <link rel="stylesheet" href= "{{ url_for('static', filename='css/style.css')}}">
-    {% block links %} 
+    {% block links %}
     {% endblock %}
 </head>
 <body>
-    <header>
-        <a href="/">Головна</a>
-        <a href="/reg">Регістрація</a>
-        <a href="/auth">Авторизація</a>
-        {% if can_logout %}
-            <a href="/logout">Вийти</a>
-        {% endif %}
-    </header>
+    {% block header %}
+    {% endblock %}
     
     <main>
         {% block content %} 
@@ -27,8 +21,6 @@
         {% block footer %} 
         {% endblock %}
     </footer>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.4/socket.io.js"></script>
     
     {% block scripts %} 
     {% endblock %}

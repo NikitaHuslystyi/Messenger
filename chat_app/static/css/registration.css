@@ -1,0 +1,172 @@
+/* Сторінка реєстрації: колонка шириною 500px по центру.
+   Усі розміри взято з макету. */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+    color: #0b0b1a;
+}
+
+/* Перекриваємо main з app/static/css/style.css (там height: 100vh і центрування) */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* ---------- Шапка ---------- */
+
+/* Лого 212x28, відступи 144px зліва і справа (144 + 212 + 144 = 500) */
+.header {
+    width: 500px;
+    margin: 0 auto;
+    padding: 0 144px;
+    margin-top: 10px;
+}
+
+.header a {
+    display: block;
+}
+
+.logo {
+    display: block;
+    width: 212px;
+    height: 28px;
+}
+
+/* Кнопка «Увійти» - у правому верхньому куті сторінки, поза колонкою 500px */
+.login-button {
+    position: absolute;
+    top: 30px;
+    right: 64px;
+    width: auto;
+    padding: 7px 16px;
+    border: 1px solid #e4e4e7;
+    border-radius: 6px;
+    color: #0b0b1a;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+/* ---------- Заголовок: 304x32, відступи по 96px ---------- */
+
+.title {
+    width: 304px;
+    height: 32px;
+    margin: 24px auto 24px;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ---------- Форма ---------- */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+/* Підписи: 500x20 */
+.form label {
+    width: 500px;
+    height: 20px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #71717a;
+    white-space: nowrap;
+}
+
+/* Під першим підписом відступ більший - як у макеті */
+.form label:first-child {
+    margin-bottom: 24px;
+}
+
+/* Поля вводу: 500x36 */
+.form input {
+    width: 500px;
+    height: 36px;
+    padding: 0 12px;
+    margin-bottom: 16px;
+    border: 1px solid #e4e4e7;
+    border-radius: 6px;
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    color: #0b0b1a;
+    outline: none;
+
+    transition-property: border-color, box-shadow;
+    transition-duration: 0.15s;
+}
+
+.form input::placeholder {
+    color: #a1a1aa;
+}
+
+/* когда пользователь кликнул в поле */
+.form input:focus {
+    border-color: #0b0b1a;
+    box-shadow: 0 0 0 3px rgba(11, 11, 26, 0.08);
+}
+
+/* Кнопка: 500x36 */
+.form button {
+    width: 500px;
+    height: 36px;
+    border: none;
+    border-radius: 6px;
+    background: #0b0b1a;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+
+    transition-property: background;
+    transition-duration: 0.15s;
+}
+
+.form button:hover {
+    background: #26263a;
+}
+
+.message {
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.error {
+    color: #dc2626;
+}
+
+.success {
+    color: #16a34a;
+}
+
+/* ---------- Ілюстрація: 500x425 ---------- */
+
+.illustration {
+    display: block;
+    width: 500px;
+    height: 425px;
+    margin-top: 12px;
+    object-fit: contain;
+}

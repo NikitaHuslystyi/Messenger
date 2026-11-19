@@ -28,19 +28,12 @@ class User(DB.Model, flask_login.UserMixin):
         back_populates = "user",
         uselist = False
     )
-    
-    # Кирилл
-    # One-to-Many
+
     messages = DB.relationship(
         "Message",
         back_populates = "user",
         uselist = True
     )
-    
-    # Со сколькими объектами будет связи
-    # uselist=True - множество объектов
-    # uselist=False - один объект
-
 
 class Chat(DB.Model):
     id = DB.Column(DB.Integer, primary_key = True)
@@ -52,7 +45,6 @@ class Chat(DB.Model):
         DB.ForeignKey("user.id", name="fk_chat_user_id")
     )
     
-    # Кирилл
     user = DB.relationship(
         "User",
         back_populates = "chat"
@@ -68,10 +60,15 @@ class Message(DB.Model):
         DB.ForeignKey("user.id", name="fk_message_user_id")
     )
     
-    # Егор
-    # Настроить связь с моделью User
     user = DB.relationship(
         "User",
         back_populates = "messages"
     )
 
+
+class MailSettings(DB.Model):
+    id = DB.Column(DB.Integer, primary_key = True)
+    host = DB.Column(DB.String)
+    port = DB.Column(DB.Integer)
+    email = DB.Column(DB.String)
+    password = DB.Column(DB.String)
